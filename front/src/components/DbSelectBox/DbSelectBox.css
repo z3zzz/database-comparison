@@ -1,0 +1,28 @@
+.container-db-select {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.db-item {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.db-item:focus {
+  border: solid black .2rem;
+  font-size: 2.5rem;
+}
+
+.mongodb {
+  background-color: #B6CCF0;
+}
+
+.mysql {
+  background-color: #B3F5DB;
+}
+
+.postgresql {
+  background-color: #F5D2A4;
+}

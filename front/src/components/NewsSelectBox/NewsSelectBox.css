@@ -1,0 +1,12 @@
+.container-news-select {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #87a18c;
+}
+
+.title-news-select {
+  font-size: 2rem;
+  background-color: #8aa890;
+}

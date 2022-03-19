@@ -1,11 +1,21 @@
-.container-pagenation-bar {
+.container-pagination-bar {
   width: 100%;
   text-align: center;
-  background-color: #87a18c;
 }
 
 .page-button {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  background-color: transparent;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+}
 
-  
+.page-button:not(:first-of-type) {
+  margin-left: 1rem;
+}
+
+.page-button-center {
+  background-color: #8cbf96;
 }

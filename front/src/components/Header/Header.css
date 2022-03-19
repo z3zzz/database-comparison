@@ -1,0 +1,23 @@
+.nav-container {
+  width: 100%;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+}
+
+.nav-item {
+  display: block;
+  font-size: 1.4rem;
+  color: black;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+.nav-item:hover {
+  opacity: 0.5;
+}
+
+.nav-item:not(:first-of-type) {
+  margin-left: .5rem;
+}

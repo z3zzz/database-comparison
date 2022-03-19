@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import DbSelectBox from "../DbSelectBox";
 import NewsSelectBox from "../NewsSelectBox";
 import NewsList from "../NewsList";
+import PagenationBar from "../PaginationBar";
 import * as Api from "../../api";
 import "./NewsBoard.css";
 
@@ -27,8 +28,9 @@ function NewsBoard() {
   return (
     <div className="news-board">
       <div className="left">
-        <DbSelectBox setNewsQuery={setNewsQueryObject} />
-        <NewsSelectBox setNewsQuery={setNewsQueryObject} />
+        <DbSelectBox setNewsQueryObject={setNewsQueryObject} />
+        <NewsSelectBox setNewsQueryObject={setNewsQueryObject} />
+        <PagenationBar setNewsQueryObject={setNewsQueryObject} />
       </div>
       <div className="right">
         <NewsList newsList={newsList} />

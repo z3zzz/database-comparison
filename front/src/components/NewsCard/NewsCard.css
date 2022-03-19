@@ -1,0 +1,11 @@
+.news-card {
+  background-color: #c4c4c4;
+  padding: .1rem 1rem;
+  margin: .5rem 0; 
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-column-gap: 2rem;
+  grid-template-rows: 2fr 1fr 1fr;
+  grid-row-gap: .5rem;
+
+}

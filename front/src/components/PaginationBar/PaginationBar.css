@@ -1,6 +1,8 @@
 .container-pagination-bar {
   width: 100%;
   text-align: center;
+  position: sticky;
+  top: 48rem;
 }
 
 .page-button {

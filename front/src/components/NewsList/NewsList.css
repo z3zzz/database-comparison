@@ -1,6 +1,5 @@
 .newscard-container {
-  width: 100%;
-  min-height: 95vh;
+  min-height: 110vh;
   display: flex;
   flex-direction: column;
   background-color: #819685;

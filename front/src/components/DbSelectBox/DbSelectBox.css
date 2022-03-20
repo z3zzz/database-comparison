@@ -1,7 +1,10 @@
 .container-db-select {
   width: 100%;
+  height: 3rem;
   display: flex;
-  margin-bottom: 2rem;
+  border-bottom: solid #555 1px;
+  position: sticky;
+  top: 3.5rem;
 }
 
 .db-item {

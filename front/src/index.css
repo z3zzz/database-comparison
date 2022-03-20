@@ -1,3 +1,10 @@
 * {
   box-sizing: border-box;
+  color: #333;
+  text-decoration: none;
+}
+
+#root {
+  background-color: #cad9d5;
+  min-height: 100vh;
 }

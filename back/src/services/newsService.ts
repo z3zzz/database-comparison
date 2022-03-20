@@ -1,7 +1,8 @@
-import { News } from "../db";
+import { NewsMongoDb } from "../db-mongo";
 
 interface INews {
-  time: string;
+  _id: string;
+  date: string;
   category: string;
   text_headline: string;
   text_company: string;
@@ -9,19 +10,43 @@ interface INews {
   label: Array<number>;
 }
 
+interface IQuery {
+  category: string;
+  company: string;
+  date: string;
+  dbType: string;
+  title: string;
+  page: number;
+  length: number;
+}
+
 class newsService {
-  static async getNewsList({ length, page }: { length: number; page: number }) {
+  static async getNewsList({
+    category,
+    company,
+    date,
+    dbType,
+    title,
+    length,
+    page,
+  }: IQuery) {
+    const text_headline = title;
+    const text_company = company;
+
     const startIndex = length * (page - 1);
     const endIndex = length * page;
 
-    const newsList: Array<INews> = await News.getNewsListByIndex({
-      startIndex,
-      endIndex,
-    });
+    let newsList: Array<INews> = [];
 
-    if (newsList.length === 0) {
-      const errorMessage = "해당 페이지에 속한 뉴스는 없습니다!";
-      return { errorMessage };
+    if (dbType === "mongodb") {
+      newsList = await NewsMongoDb.getNewsList({
+        date,
+        text_headline,
+        text_company,
+        category,
+        startIndex,
+        endIndex,
+      });
     }
 
     return newsList;

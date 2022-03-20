@@ -21,13 +21,13 @@ function NewsSelectItem({
     if (isNumber) {
       const newNumber = parseInt(e.target.value);
       setNumber(newNumber);
-      setSelectObj((obj) => ({ ...obj, [field]: newNumber }));
+      setSelectObj((obj) => ({ ...obj, [field]: newNumber ? newNumber : 100 }));
       return;
     }
 
     if (isDate) {
       const newDate = e;
-      newDate.setHours(newDate.getHours() + 10);
+      newDate.setHours(newDate.getHours() + 15);
       setDate(newDate);
 
       const dateString = newDate.toISOString().split("T")[0];

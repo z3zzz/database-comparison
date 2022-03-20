@@ -1,4 +1,4 @@
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect, useTransition, Suspense } from "react";
 import DbSelectBox from "../DbSelectBox";
 import NewsSelectBox from "../NewsSelectBox";
 import NewsList from "../NewsList";
@@ -7,8 +7,30 @@ import * as Api from "../../api";
 import "./NewsBoard.css";
 
 function NewsBoard() {
-  const [newsList, setNewsList] = useState([]);
-  const [page, setPage] = useState(1);
+  const fetchNewsList = async (queryObj, isNew = true) => {
+    setIsFetching(true);
+    if (isNew) {
+      queryObj = { ...queryObj, page: 1 };
+      setPage(1);
+    }
+    console.log({ queryObj });
+
+    const searchParams = new URLSearchParams(queryObj);
+    const query = "?" + searchParams.toString();
+
+    const res = await Api.get("api/newslist", query);
+    const newses = res.data;
+
+    if (newses.length !== 0) {
+      setIsNewsList(true);
+    } else {
+      setIsNewsList(false);
+    }
+
+    console.dir(newses);
+    setIsFetching(false);
+    startTransition(() => setNewsList(newses));
+  };
 
   const initialQueryObj = {
     page: 1,
@@ -19,32 +41,22 @@ function NewsBoard() {
     date: "",
     dbType: "mongodb",
   };
-  const [newsQueryObject, setNewsQueryObject] = useState(initialQueryObj);
 
+  const [newsQueryObject, setNewsQueryObject] = useState(initialQueryObj);
+  const [newsList, setNewsList] = useState([]);
+  const [isNewsList, setIsNewsList] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
+  const [page, setPage] = useState(1);
   const [isPending, startTransition] = useTransition({ timeoutMs: 10000 });
 
-  const fetchNewsList = async (queryObj, isNew = true) => {
-    if (isNew) {
-      queryObj = { ...queryObj, page: 1 };
-      setPage(1);
-    }
-    console.log({ queryObj });
-
-    const searchParams = new URLSearchParams(queryObj);
-    const query = "?" + searchParams.toString();
-
-    console.log({ isPending });
-    const res = await Api.get("api/newslist", query);
-    console.dir(res.data);
-    setNewsList(res.data);
-    console.log({ isPending });
-  };
-
   useEffect(() => {
-    fetchNewsList({
-      page: 1,
-      length: 100,
-    });
+    const makeInitialNewsList = async (queryObj) => {
+      const searchParams = new URLSearchParams(queryObj);
+      const query = "?" + searchParams.toString();
+      const res = await Api.get("api/newslist", query);
+      setNewsList(res.data);
+    };
+    makeInitialNewsList({ page: 1, length: 100 });
   }, []);
 
   return (
@@ -67,7 +79,14 @@ function NewsBoard() {
         />
       </div>
       <div className="right">
-        <NewsList newsList={newsList} isPending={isPending} />
+        <Suspense>
+          <NewsList
+            newsList={newsList}
+            isPending={isPending}
+            isNewsList={isNewsList}
+            isFetching={isFetching}
+          />
+        </Suspense>
       </div>
     </div>
   );

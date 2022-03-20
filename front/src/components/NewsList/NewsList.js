@@ -2,18 +2,19 @@ import { Suspense } from "react";
 import NewsCard from "../NewsCard";
 import "./NewsList.css";
 
-function NewsList({ newsList, isPending }) {
+function NewsList({ newsList, isPending, isNewsList, isFetching }) {
+  console.log(`isPending from newsList: ${isPending}`);
   const newsCardContainerClass = isPending
     ? "newscard-container newscard-pending"
     : "newscard-container";
 
   return (
     <div className={newsCardContainerClass}>
-      <Suspense>
-        {newsList.map((news) => (
-          <NewsCard key={news._id} news={news} />
-        ))}
-      </Suspense>
+      {isFetching && <h4>뉴스를 가져오고 있습니다...</h4>}
+      {!isNewsList && <h4>해당 조건에 맞는 뉴스는 없습니다...</h4>}
+      {newsList.map((news) => (
+        <NewsCard key={news._id} news={news} />
+      ))}
     </div>
   );
 }

@@ -16,9 +16,10 @@ function NewsSelectBox({
     const queryObj = { ...newsQueryObject, ...selectObj };
 
     setNewsQueryObject(queryObj);
-    startTransition(() => {
-      fetchNewsList(queryObj);
-    });
+    //startTransition(() => {
+      //fetchNewsList(queryObj);
+    //});
+    fetchNewsList(queryObj)
     window.scrollTo({
       top: 0,
       behavior: "smooth",

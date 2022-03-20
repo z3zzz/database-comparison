@@ -1,0 +1,42 @@
+.news-select-item {
+  width: 100%;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.news-select-label {
+  font-size: 1.4rem;
+  line-height: 3rem;
+  display: block;
+  margin-right: 2rem;
+  width: 7rem;
+  display: block;
+}
+
+.news-select-input {
+  display: block;
+  font-size: 1.4rem;
+  width: 15rem;
+  background-color: #d4ccc1;
+  border: 0;
+  box-shadow: none;
+}
+
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+  height: 3rem;
+  display: block;
+  font-size: 1.4rem;
+  width: 15rem !important;
+  background-color: #d4ccc1;
+  border: 0;
+  box-shadow: none;
+  margin-right: 5rem;
+}

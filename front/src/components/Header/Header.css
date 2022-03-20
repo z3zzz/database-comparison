@@ -23,6 +23,10 @@
   opacity: 0.5;
 }
 
+.nav-item:first-of-type {
+  margin-left: 5rem;
+}
+
 .nav-item:not(:first-of-type) {
   margin-left: 0.5rem;
 }

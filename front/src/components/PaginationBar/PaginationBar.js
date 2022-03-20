@@ -4,18 +4,21 @@ import "./PaginationBar.css";
 function PaginationBar({
   newsQueryObject,
   setNewsQueryObject,
-  isPending,
   startTransition,
   fetchNewsList,
+  page,
+  setPage
 }) {
-  const [page, setPage] = useState(1);
   const isPageLowerThanFour = page < 4;
-
   const doPageTransition = (pageNum) => {
     const queryObj = { ...newsQueryObject, page: pageNum };
     setNewsQueryObject(queryObj);
     startTransition(() => {
-      fetchNewsList(queryObj);
+      fetchNewsList(queryObj, false);
+    });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
   };
 

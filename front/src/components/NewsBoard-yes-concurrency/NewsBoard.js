@@ -1,4 +1,4 @@
-import { useState, useEffect, useTransition, Suspense } from "react";
+import { useState, useEffect, useTransition } from "react";
 import DbSelectBox from "../DbSelectBox";
 import NewsSelectBox from "../NewsSelectBox";
 import NewsList from "../NewsList";
@@ -8,42 +8,66 @@ import "./NewsBoard.css";
 
 function NewsBoard() {
   const [newsList, setNewsList] = useState([]);
-  const [newsQueryObject, setNewsQueryObject] = useState({
+  const [page, setPage] = useState(1);
+
+  const initialQueryObj = {
     page: 1,
-    length: 2000,
-  });
+    length: 100,
+    title: "",
+    company: "",
+    category: "",
+    date: "",
+    dbType: "mongodb",
+  };
+  const [newsQueryObject, setNewsQueryObject] = useState(initialQueryObj);
 
   const [isPending, startTransition] = useTransition({ timeoutMs: 10000 });
 
-  const fetchNewsList = async (queryObj) => {
+  const fetchNewsList = async (queryObj, isNew = true) => {
+    if (isNew) {
+      queryObj = { ...queryObj, page: 1 };
+      setPage(1);
+    }
+    console.log({ queryObj });
+
     const searchParams = new URLSearchParams(queryObj);
     const query = "?" + searchParams.toString();
 
+    console.log({ isPending });
     const res = await Api.get("api/newslist", query);
+    console.dir(res.data);
     setNewsList(res.data);
+    console.log({ isPending });
   };
 
   useEffect(() => {
-    fetchNewsList({ page: 1, length: 2000 });
+    fetchNewsList({
+      page: 1,
+      length: 100,
+    });
   }, []);
 
   return (
     <div className="news-board">
       <div className="left">
         <DbSelectBox setNewsQueryObject={setNewsQueryObject} />
-        <NewsSelectBox setNewsQueryObject={setNewsQueryObject} />
-        <PaginationBar
+        <NewsSelectBox
           newsQueryObject={newsQueryObject}
           setNewsQueryObject={setNewsQueryObject}
-          isPending={isPending}
           startTransition={startTransition}
           fetchNewsList={fetchNewsList}
         />
+        <PaginationBar
+          newsQueryObject={newsQueryObject}
+          setNewsQueryObject={setNewsQueryObject}
+          startTransition={startTransition}
+          fetchNewsList={fetchNewsList}
+          page={page}
+          setPage={setPage}
+        />
       </div>
       <div className="right">
-        <Suspense fallback={<h2>뉴스를 가져오고 있습니다...</h2>}>
-          <NewsList newsList={newsList} isPending={isPending} />
-        </Suspense>
+        <NewsList newsList={newsList} isPending={isPending} />
       </div>
     </div>
   );

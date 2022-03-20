@@ -4,7 +4,7 @@ function NewsCard({ news }) {
   const title = news.text_headline;
   const company = news.text_company;
   const category = news.category;
-  const time = news.time;
+  const date = news.date_string;
   const link = news.context_url;
 
   return (
@@ -16,7 +16,7 @@ function NewsCard({ news }) {
       <div className="news news-etc">분류</div>
       <div className="news news-etc">{category}</div>
       <div className="news news-etc">날짜</div>
-      <div className="news news-etc">{time}</div>
+      <div className="news news-etc">{date}</div>
       <a href={link} target="_blank" rel="noreferrer">
         <span className="news-link"></span>
       </a>

@@ -23,7 +23,7 @@ function DbSelectBox({ setNewsQuery }) {
   return (
     <div className="container-db-select">
       <button
-        className="db-item mongodb"
+        className="db-item db-item-selected mongodb"
         value="mongodb"
         ref={mongodbRef}
         onClick={handleClick}

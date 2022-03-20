@@ -3,3 +3,11 @@
   padding-top: 0 !important;
 }
 
+.left {
+  width: 30rem;
+  margin-left: 5rem;
+}
+
+.right {
+  margin-right: 5rem;
+}

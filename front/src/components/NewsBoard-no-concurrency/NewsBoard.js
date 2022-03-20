@@ -10,16 +10,15 @@ function NewsBoard() {
   const [newsList, setNewsList] = useState([]);
   const [newsQueryObject, setNewsQueryObject] = useState({
     page: 1,
-    length: 50,
+    length: 5000,
   });
-
   useEffect(() => {
     const fetchNewsList = async () => {
       const searchParams = new URLSearchParams(newsQueryObject);
       const query = "?" + searchParams.toString();
 
-      const response = await Api.get("api/newslist", query);
-      setNewsList(response.data);
+      const res = await Api.get("api/newslist", query);
+      setNewsList(res.data);
     };
 
     fetchNewsList();

@@ -4,7 +4,7 @@
 }
 
 .nav-item {
-  display: block;
+  display: inline-block;
   font-size: 1.4rem;
   color: black;
   border: 0;
@@ -19,5 +19,5 @@
 }
 
 .nav-item:not(:first-of-type) {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import NewsCard from "../NewsCard";
 import "./NewsList.css";
 
@@ -8,12 +7,7 @@ function NewsList({ newsList, isPending }) {
   return (
     <div className={style}>
       {newsList.map((news) => (
-        <Suspense
-          key={news._id}
-          fallback={<h2>뉴스를 가져오는 중입니다...</h2>}
-        >
-          <NewsCard news={news} />
-        </Suspense>
+        <NewsCard key={news._id} news={news} />
       ))}
     </div>
   );

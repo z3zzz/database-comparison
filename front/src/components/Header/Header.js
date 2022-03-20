@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Header.css"
+import "./Header.css";
 
 function Header() {
   const navigate = useNavigate();
@@ -10,7 +10,13 @@ function Header() {
         className="nav-item"
         onClick={() => navigate("/", { replace: true })}
       >
-        뉴스보드
+        concurrency 있음
+      </button>
+      <button
+        className="nav-item"
+        onClick={() => navigate("/no-concurrency", { replace: true })}
+      >
+        concurrency 없음
       </button>
     </div>
   );

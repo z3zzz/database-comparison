@@ -10,10 +10,11 @@
   background: none;
   box-shadow: none;
   border-radius: 0px;
+  width: 2.8rem;
 }
 
 .page-button:not(:first-of-type) {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 
 .page-button-center {

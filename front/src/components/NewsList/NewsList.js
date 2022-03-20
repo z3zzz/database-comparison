@@ -3,7 +3,9 @@ import NewsCard from "../NewsCard";
 import "./NewsList.css";
 
 function NewsList({ newsList, isPending }) {
-  const style = isPending ? "newscard-container pending" : "newscard-container";
+  const style = isPending
+    ? "newscard-container newscard-pending"
+    : "newscard-container";
 
   return (
     <div className={style}>

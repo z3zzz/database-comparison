@@ -1,11 +1,12 @@
 .newscard-container {
   width: 100%;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
   background-color: #819685;
   padding: 1rem;
 }
 
-.pending {
+.newscard-pending {
   opacity: 0.5;
 }

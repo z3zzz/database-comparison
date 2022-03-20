@@ -9,6 +9,7 @@ import "./NewsBoard.css";
 function NewsBoard() {
   const fetchNewsList = async (queryObj, isNew = true) => {
     setIsFetching(true);
+    setIsNewsList(true);
     if (isNew) {
       queryObj = { ...queryObj, page: 1 };
       setPage(1);

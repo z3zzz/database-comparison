@@ -1,6 +1,8 @@
 .news-board {
-  margin-top: 0;
-  padding-top: 0 !important;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 3rem;
 }
 
 .left {
@@ -17,6 +19,4 @@
   position: fixed;
   top: 2rem;
   z-index: 2;
-
-
 }

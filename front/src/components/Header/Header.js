@@ -10,13 +10,13 @@ function Header() {
         className="nav-item"
         onClick={() => navigate("/", { replace: true })}
       >
-        concurrency 있음
+        R-18
       </button>
       <button
         className="nav-item"
         onClick={() => navigate("/no-concurrency", { replace: true })}
       >
-        concurrency 없음
+        R-17
       </button>
     </div>
   );

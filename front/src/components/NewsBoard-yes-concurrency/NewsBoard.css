@@ -1,5 +1,4 @@
 .news-board {
-  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 2fr;
   column-gap: 3rem;

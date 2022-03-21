@@ -4,7 +4,7 @@ import NewsSelectBox from "../NewsSelectBox";
 import NewsList from "../NewsList-no-concurrency";
 import PaginationBar from "../PaginationBar";
 import * as Api from "../../api";
-import "./NewsBoard.css";
+import "../NewsBoard-yes-concurrency/NewsBoard.css";
 
 function NewsBoard() {
   const fetchNewsList = async (queryObj, isNew = true) => {

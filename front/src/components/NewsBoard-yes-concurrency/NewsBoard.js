@@ -1,7 +1,7 @@
 import { useState, useEffect, useTransition, Suspense } from "react";
 import DbSelectBox from "../DbSelectBox";
 import NewsSelectBox from "../NewsSelectBox";
-import NewsList from "../NewsList";
+import NewsList from "../NewsList-yes-concurrency";
 import PaginationBar from "../PaginationBar";
 import * as Api from "../../api";
 import "./NewsBoard.css";

@@ -5,7 +5,6 @@ import NewsSelectItem from "../NewsSelectItem";
 function NewsSelectBox({
   newsQueryObject,
   setNewsQueryObject,
-  startTransition,
   fetchNewsList,
 }) {
   const [selectObj, setSelectObj] = useState({});
@@ -16,9 +15,6 @@ function NewsSelectBox({
     const queryObj = { ...newsQueryObject, ...selectObj };
 
     setNewsQueryObject(queryObj);
-    //startTransition(() => {
-    //fetchNewsList(queryObj);
-    //});
     fetchNewsList(queryObj);
     window.scrollTo({
       top: 0,

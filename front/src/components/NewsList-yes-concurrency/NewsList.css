@@ -1,0 +1,11 @@
+.newscard-container {
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #819685;
+  padding: 1rem;
+}
+
+.newscard-pending {
+  opacity: 0.5;
+}

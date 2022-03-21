@@ -1,10 +1,8 @@
-import { Suspense } from "react";
 import NewsCard from "../NewsCard";
 import "./NewsList.css";
 
-function NewsList({ newsList, isPending, isNewsList, isFetching }) {
-  console.log(`isPending from newsList: ${isPending}`);
-  const newsCardContainerClass = isPending
+function NewsList({ newsList, isNewsList, isFetching }) {
+  const newsCardContainerClass = isFetching
     ? "newscard-container newscard-pending"
     : "newscard-container";
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DbSelectBox from "../DbSelectBox";
 import NewsSelectBox from "../NewsSelectBox";
-import NewsList from "../NewsList";
+import NewsList from "../NewsList-no-concurrency";
 import PaginationBar from "../PaginationBar";
 import * as Api from "../../api";
 import "./NewsBoard.css";
@@ -36,11 +36,11 @@ function NewsBoard() {
       setIsNewsList(true);
     }
 
-    setIsFetching(false);
     setNewsCount(newsTotalCount);
 
     setNewsList(newses);
 
+    setIsFetching(false);
     const endTime = performance.now();
     setPerformanceTime(endTime - startTime);
   };
@@ -76,10 +76,10 @@ function NewsBoard() {
       const newsTotalCount = res.data.totalCount;
 
       setNewsCount(newsTotalCount);
-      setIsFetching(false);
       setNewsList(newses);
       setMaxPage(Math.floor(newsTotalCount / queryObj.length));
 
+      setIsFetching(false);
       const endTime = performance.now();
       setPerformanceTime(endTime - startTime);
     };

@@ -17,16 +17,18 @@
   box-shadow: none;
   border-radius: 0px;
   background-color: transparent;
+  text-decoration: none;
 }
 
 .nav-item:hover {
   opacity: 0.5;
 }
 
-.nav-item:first-of-type {
-  margin-left: 5rem;
+.nav-item-button {
+  margin-left: 4rem;
 }
 
-.nav-item:not(:first-of-type) {
-  margin-left: 0.5rem;
+.nav-item-a {
+  margin-left: 2rem;
 }
+

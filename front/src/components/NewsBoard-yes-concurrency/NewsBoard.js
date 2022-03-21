@@ -105,7 +105,6 @@ function NewsBoard() {
         <PaginationBar
           newsQueryObject={newsQueryObject}
           setNewsQueryObject={setNewsQueryObject}
-          startTransition={startTransition}
           fetchNewsList={fetchNewsList}
           page={page}
           setPage={setPage}

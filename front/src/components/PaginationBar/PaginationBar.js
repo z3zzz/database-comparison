@@ -3,7 +3,6 @@ import "./PaginationBar.css";
 function PaginationBar({
   newsQueryObject,
   setNewsQueryObject,
-  startTransition,
   fetchNewsList,
   page,
   setPage,

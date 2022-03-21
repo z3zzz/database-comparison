@@ -28,7 +28,6 @@ function NewsBoard() {
       setIsNewsList(false);
     }
 
-    console.dir(newses);
     setIsFetching(false);
     startTransition(() => setNewsList(newses));
   };
@@ -52,10 +51,12 @@ function NewsBoard() {
 
   useEffect(() => {
     const makeInitialNewsList = async (queryObj) => {
+      setIsFetching(true);
       const searchParams = new URLSearchParams(queryObj);
       const query = "?" + searchParams.toString();
       const res = await Api.get("api/newslist", query);
-      setNewsList(res.data);
+      setIsFetching(false);
+      startTransition(() => setNewsList(res.data));
     };
     makeInitialNewsList({ page: 1, length: 100 });
   }, []);

@@ -20,9 +20,7 @@ function PaginationBar({
   const doPageTransition = (pageNum) => {
     const queryObj = { ...newsQueryObject, page: pageNum };
     setNewsQueryObject(queryObj);
-    startTransition(() => {
-      fetchNewsList(queryObj, false);
-    });
+    fetchNewsList(queryObj, false);
     window.scrollTo({
       top: 0,
       behavior: "smooth",

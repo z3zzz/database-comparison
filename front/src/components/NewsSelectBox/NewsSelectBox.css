@@ -1,7 +1,7 @@
 .container-news-select {
   padding: 1rem;
   width: 100%;
-  min-height: 40rem;
+  min-height: 32rem;
   text-align: center;
   background-color: #87a18c;
   margin-bottom: 1rem;
@@ -27,7 +27,7 @@
   background: none;
   box-shadow: none;
   border-radius: 5%;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .button-news-select:hover {

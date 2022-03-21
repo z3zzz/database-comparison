@@ -9,6 +9,11 @@ interface INewsFilter {
   endIndex: number;
 }
 
+interface INewses {
+  data: Array<any>;
+  totalCount: number;
+}
+
 class News {
   static async getNewsList({
     date,
@@ -41,18 +46,23 @@ class News {
 
     console.log({ filter });
 
-    const projection = [
-      "_id",
-      "date_string",
-      "category",
-      "text_headline",
-      "text_company",
-      "context_url",
-    ];
-    const options = { skip, limit };
+    const result = await NewsModel.aggregate([
+      { $match: filter },
+      {
+        $facet: {
+          totalData: [{ $match: {} }, { $skip: skip }, { $limit: limit }],
+          totalCount: [{ $count: "count" }],
+        },
+      },
+    ]);
 
-    const newsList = await NewsModel.find(filter, projection, options);
-    return newsList;
+    console.dir(result);
+
+    const newses: INewses = {
+      data: result[0].totalData,
+      totalCount: result[0].totalCount[0]?.count ?? 0,
+    };
+    return newses;
   }
 }
 

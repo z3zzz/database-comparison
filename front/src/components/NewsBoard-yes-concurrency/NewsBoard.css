@@ -11,3 +11,12 @@
 .right {
   margin-right: 5rem;
 }
+
+.news-count-text {
+  font-size: 1rem;
+  position: fixed;
+  top: 2rem;
+  z-index: 2;
+
+
+}

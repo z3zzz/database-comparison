@@ -18,7 +18,7 @@ newsRouter.get("/api/newslist", async function (req, res, next) {
     const { category, company, date, dbType, title, page, length } =
       req.query as unknown as IQuery;
 
-    const newsList = await newsService.getNewsList({
+    const { data, totalCount } = await newsService.getNewsList({
       category: category ? category : "all",
       company: company ? company : "all",
       date: date ? date : "all",
@@ -28,7 +28,7 @@ newsRouter.get("/api/newslist", async function (req, res, next) {
       length: parseInt(length),
     });
 
-    res.status(200).json(newsList);
+    res.status(200).json({ newses: data, totalCount });
   } catch (error) {
     next(error);
   }

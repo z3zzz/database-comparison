@@ -5,6 +5,15 @@
   top: 40rem;
 }
 
+@media screen and (max-height: 600px) {
+  .container-pagination-bar {
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    top: 88%;
+  }
+}
+
 .page-button {
   font-size: 1.3rem;
   background-color: transparent;
@@ -15,6 +24,16 @@
   width: 2.8rem;
 }
 
+.page-button:hover {
+  opacity: 0.3;
+}
+
+.page-button:disabled,
+.page-button[disabled] {
+  color: #666666;
+  opacity: 1;
+}
+
 .page-button:not(:first-of-type) {
   margin-left: 0.5rem;
 }
@@ -23,4 +42,3 @@
   background-color: #8cbf96;
   border-radius: 40%;
 }
-

@@ -17,9 +17,9 @@ function NewsSelectBox({
 
     setNewsQueryObject(queryObj);
     //startTransition(() => {
-      //fetchNewsList(queryObj);
+    //fetchNewsList(queryObj);
     //});
-    fetchNewsList(queryObj)
+    fetchNewsList(queryObj);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -36,6 +36,12 @@ function NewsSelectBox({
           setSelectObj={setSelectObj}
         />
         <NewsSelectItem
+          label="날짜"
+          field="date"
+          isDate
+          setSelectObj={setSelectObj}
+        />
+        <NewsSelectItem
           label="신문사"
           field="company"
           isInput
@@ -45,12 +51,6 @@ function NewsSelectBox({
           label="분류"
           field="category"
           isInput
-          setSelectObj={setSelectObj}
-        />
-        <NewsSelectItem
-          label="날짜"
-          field="date"
-          isDate
           setSelectObj={setSelectObj}
         />
         <NewsSelectItem

@@ -20,6 +20,11 @@ interface IQuery {
   length: number;
 }
 
+interface INewses {
+  data: Array<INews>;
+  totalCount: number;
+}
+
 class newsService {
   static async getNewsList({
     category,
@@ -36,10 +41,10 @@ class newsService {
     const startIndex = length * (page - 1);
     const endIndex = length * page;
 
-    let newsList: Array<INews> = [];
+    let newses: INewses;
 
     if (dbType === "mongodb") {
-      newsList = await NewsMongoDb.getNewsList({
+      newses = await NewsMongoDb.getNewsList({
         date,
         text_headline,
         text_company,
@@ -49,7 +54,8 @@ class newsService {
       });
     }
 
-    return newsList;
+    // @ts-ignore
+    return newses;
   }
 }
 

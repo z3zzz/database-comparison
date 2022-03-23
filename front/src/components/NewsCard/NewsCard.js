@@ -1,11 +1,11 @@
 import "./NewsCard.css";
 
 function NewsCard({ news }) {
-  const title = news.text_headline;
-  const company = news.text_company;
+  const title = news.text_headline || news.title;
+  const company = news.text_company || news.company;
   const category = news.category;
-  const date = news.date_string;
-  const link = news.context_url;
+  const date = news.date_string || news.date;
+  const link = news.context_url || "#";
 
   return (
     <div className="news-card">

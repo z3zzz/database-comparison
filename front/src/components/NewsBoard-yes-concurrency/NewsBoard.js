@@ -52,7 +52,7 @@ function NewsBoard() {
     company: "",
     category: "",
     date: "",
-    dbType: "mongodb",
+    dbtype: "mongodb",
   };
 
   const [newsQueryObject, setNewsQueryObject] = useState(initialQueryObj);
@@ -95,11 +95,14 @@ function NewsBoard() {
   return (
     <div className="news-board">
       <div className="left">
-        <DbSelectBox setNewsQueryObject={setNewsQueryObject} />
+        <DbSelectBox
+          newsQueryObject={newsQueryObject}
+          setNewsQueryObject={setNewsQueryObject}
+          fetchNewsList={fetchNewsList}
+        />
         <NewsSelectBox
           newsQueryObject={newsQueryObject}
           setNewsQueryObject={setNewsQueryObject}
-          startTransition={startTransition}
           fetchNewsList={fetchNewsList}
         />
         <PaginationBar

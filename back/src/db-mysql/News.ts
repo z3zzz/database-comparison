@@ -9,6 +9,14 @@ interface INewsFilter {
   endIndex: number;
 }
 
+interface INews {
+  id: number;
+  date: string;
+  category: string;
+  title: string;
+  company: string;
+}
+
 class News {
   static async getNewsList({
     date,
@@ -26,7 +34,7 @@ class News {
     const isCompanyAll = text_company === "all";
     const isCategoryAll = category === "all";
 
-    const dateCondition = isDateAll ? `` : `WHERE date = "${date}"`;
+    const dateCondition = isDateAll ? `WHERE id > 0` : `WHERE date = "${date}"`;
     const titleCondition = isTitleAll
       ? ``
       : `AND title LIKE "%${text_headline}%"`;
@@ -35,16 +43,18 @@ class News {
       : `AND company LIKE "%${text_company}%"`;
     const categoryCondition = isCategoryAll
       ? ``
-      : `AND category LIKE "${category}"`;
+      : `AND category LIKE "%${category}%"`;
 
     const skipCondition = `LIMIT ${skip}, ${limit}`;
 
     const query = `SELECT * FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
 
     const [rows, fields] = await pool.query(query);
+    const newsList: Array<INews> = JSON.parse(JSON.stringify(rows)) || [];
+
     console.log(rows);
 
-    return rows;
+    return { data: newsList, totalCount: newsList.length };
   }
 }
 

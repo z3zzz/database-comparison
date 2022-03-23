@@ -1,15 +1,20 @@
 import { useRef } from "react";
 import "./DbSelectBox.css";
 
-function DbSelectBox({ setNewsQuery }) {
+function DbSelectBox({
+  newsQueryObject,
+  setNewsQueryObject,
+  fetchNewsList,
+}) {
   const mongodbRef = useRef();
   const mysqlRef = useRef();
   const postgresqlRef = useRef();
   const refs = [mongodbRef, mysqlRef, postgresqlRef];
 
   const handleClick = (e) => {
+    e.preventDefault();
     const dbType = e.target.value;
-    console.log(dbType);
+    const queryObj = { ...newsQueryObject, dbtype: dbType };
 
     refs.forEach((ref) => {
       if (ref.current.value === dbType) {
@@ -17,6 +22,13 @@ function DbSelectBox({ setNewsQuery }) {
       } else {
         ref.current.classList.remove("db-item-selected");
       }
+    });
+
+    setNewsQueryObject(queryObj);
+    fetchNewsList(queryObj);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
   };
 
@@ -40,7 +52,7 @@ function DbSelectBox({ setNewsQuery }) {
       </button>
       <button
         className="db-item postgresql"
-        value="postgresql"
+        value=""
         ref={postgresqlRef}
         onClick={handleClick}
       >

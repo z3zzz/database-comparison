@@ -1,6 +1,7 @@
 import { NewsMongoDb } from "../db-mongo";
+import { NewsMysql } from "../db-mysql";
 
-interface INews {
+interface INewsMongodb {
   _id: string;
   date: string;
   category: string;
@@ -8,6 +9,24 @@ interface INews {
   text_company: string;
   context_url: string;
   label: Array<number>;
+}
+
+interface INewsesMongodb {
+  data: Array<INewsMongodb>;
+  totalCount: number;
+}
+
+interface INewsMysql {
+  id: number;
+  date: string;
+  category: string;
+  title: string;
+  company: string;
+}
+
+interface INewsesMysql {
+  data: Array<INewsMysql>;
+  totalCount: number;
 }
 
 interface IQuery {
@@ -18,11 +37,6 @@ interface IQuery {
   title: string;
   page: number;
   length: number;
-}
-
-interface INewses {
-  data: Array<INews>;
-  totalCount: number;
 }
 
 class newsService {
@@ -41,10 +55,21 @@ class newsService {
     const startIndex = length * (page - 1);
     const endIndex = length * page;
 
-    let newses: INewses;
+    let newses: INewsesMongodb | INewsesMysql;
 
     if (dbType === "mongodb") {
       newses = await NewsMongoDb.getNewsList({
+        date,
+        text_headline,
+        text_company,
+        category,
+        startIndex,
+        endIndex,
+      });
+    }
+
+    if (dbType === "mysql") {
+      newses = await NewsMysql.getNewsList({
         date,
         text_headline,
         text_company,

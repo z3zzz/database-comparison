@@ -7,7 +7,7 @@ interface IQuery {
   category: string;
   company: string;
   date: string;
-  dbType: string;
+  dbtype: string;
   title: string;
   page: string;
   length: string;
@@ -15,14 +15,14 @@ interface IQuery {
 
 newsRouter.get("/api/newslist", async function (req, res, next) {
   try {
-    const { category, company, date, dbType, title, page, length } =
+    const { category, company, date, dbtype, title, page, length } =
       req.query as unknown as IQuery;
 
     const { data, totalCount } = await newsService.getNewsList({
       category: category ? category : "all",
       company: company ? company : "all",
       date: date ? date : "all",
-      dbType: dbType ? dbType : "mongodb",
+      dbType: dbtype ? dbtype : "mongodb",
       title: title ? title : "all",
       page: parseInt(page),
       length: parseInt(length),

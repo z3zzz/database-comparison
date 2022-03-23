@@ -1,14 +1,11 @@
 import mysql from "mysql2";
-import prompt from "password-prompt";
 import { News } from "./News";
-
-const pw: string = await prompt("mysql password: ");
 
 const poolPrepare = mysql.createPool({
   connectionLimit: 10,
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
-  password: pw,
+  password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
 });
 
@@ -18,7 +15,7 @@ poolPrepare.getConnection((error: any, connection: any) => {
     throw error;
   }
 
-  console.log("정상적으로 Mysql서버에 연결되었습니다.\n", {
+  console.log("정상적으로 Mysql서버에 연결되었습니다.", {
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
     database: process.env.MYSQL_DB,

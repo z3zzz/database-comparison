@@ -4,7 +4,7 @@ function NewsCard({ news }) {
   const title = news.text_headline || news.title;
   const company = news.text_company || news.company;
   const category = news.category;
-  const date = news.date_string || news.date;
+  const date = news.date_string || news.date.split("T")[0];
   const link = news.context_url || "#";
 
   return (

@@ -44,23 +44,31 @@ class News {
       ...filter_category,
     };
 
-    console.log({ filter });
+    console.log(
+      "mongodb access with: ",
+      { filter },
+      { startIndex },
+      { endIndex }
+    );
 
-    const result = await NewsModel.aggregate([
-      { $match: filter },
-      {
-        $facet: {
-          totalData: [{ $match: {} }, { $skip: skip }, { $limit: limit }],
-          totalCount: [{ $count: "count" }],
-        },
-      },
-    ]);
+    //const result = await NewsModel.aggregate([
+    //{ $match: filter },
+    //{
+    //$facet: {
+    //totalData: [{ $match: {} }, { $skip: skip }, { $limit: limit }],
+    //totalCount: [{ $count: "count" }],
+    //},
+    //},
+    //]);
 
-    console.dir(result);
+    const newsData = await NewsModel.find(filter, {}, { skip, limit });
+    const newsCount = await NewsModel.countDocuments(filter);
+
+    console.log("mongodb query result: ", { newsCount });
 
     const newses: INewses = {
-      data: result[0].totalData,
-      totalCount: result[0].totalCount[0]?.count ?? 0,
+      data: newsData,
+      totalCount: newsCount,
     };
     return newses;
   }

@@ -17,6 +17,10 @@ interface INews {
   company: string;
 }
 
+interface ICount {
+  newsCount: number;
+}
+
 class News {
   static async getNewsList({
     date,
@@ -47,14 +51,22 @@ class News {
 
     const skipCondition = `LIMIT ${skip}, ${limit}`;
 
-    const query = `SELECT * FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
+    const newsQuery = `SELECT * FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
 
-    const [rows, fields] = await pool.query(query);
-    const newsList: Array<INews> = JSON.parse(JSON.stringify(rows)) || [];
+    console.log()
+    console.log("MySQL acces with: ", { newsQuery });
 
-    console.log(rows);
+    const [newsRows, fields] = await pool.query(newsQuery);
+    const newsList: Array<INews> = JSON.parse(JSON.stringify(newsRows)) || [];
 
-    return { data: newsList, totalCount: newsList.length };
+    const countQuery = `SELECT COUNT(*) as newsCount FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
+    const [countRows, fields2] = await pool.query(countQuery);
+    const countList: Array<ICount> = JSON.parse(JSON.stringify(countRows));
+    const count = countList[0].newsCount;
+
+    console.log("MySQL query result: ", { count });
+
+    return { data: newsList, totalCount: count };
   }
 }
 

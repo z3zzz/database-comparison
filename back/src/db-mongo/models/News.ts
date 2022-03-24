@@ -44,6 +44,7 @@ class News {
       ...filter_category,
     };
 
+    console.log()
     console.log(
       "mongodb access with: ",
       { filter },

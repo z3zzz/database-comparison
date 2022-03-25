@@ -53,13 +53,13 @@ class News {
 
     const newsQuery = `SELECT * FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
 
-    console.log()
+    console.log();
     console.log("MySQL acces with: ", { newsQuery });
 
     const [newsRows, fields] = await pool.query(newsQuery);
     const newsList: Array<INews> = JSON.parse(JSON.stringify(newsRows)) || [];
 
-    const countQuery = `SELECT COUNT(*) as newsCount FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition} ${skipCondition}`;
+    const countQuery = `SELECT COUNT(*) as newsCount FROM newslist ${dateCondition} ${titleCondition} ${companyCondition} ${categoryCondition}`;
     const [countRows, fields2] = await pool.query(countQuery);
     const countList: Array<ICount> = JSON.parse(JSON.stringify(countRows));
     const count = countList[0].newsCount;

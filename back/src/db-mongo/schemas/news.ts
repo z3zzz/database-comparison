@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+// _id 는 mongoose 에서 관리함
 const NewsSchema = new Schema(
   {
     time: {
